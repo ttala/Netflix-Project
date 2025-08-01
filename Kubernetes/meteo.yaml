@@ -19,6 +19,12 @@ spec:
         image: ttyeri/myweather:latest
         ports:
         - containerPort: 5000
+        env:
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: weather-api
+              key: API_KEY
 
 ---
 apiVersion: v1
