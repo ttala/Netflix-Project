@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meteo-app
+  labels:
+    app: meteo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meteo-app
+  template:
+    metadata:
+      labels:
+        app: meteo-app
+    spec:
+      containers:
+      - name: meteox-app
+        image: ttyeri/myweather:latest
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: meteo-app
+  labels:
+    app: meteo-app
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: meteo-app
