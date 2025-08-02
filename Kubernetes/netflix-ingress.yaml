@@ -4,6 +4,7 @@ metadata:
   name: netflix-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/acme-challenge: "true"
 spec:
   ingressClassName: nginx
   rules:
