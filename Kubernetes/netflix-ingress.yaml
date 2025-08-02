@@ -4,9 +4,14 @@ metadata:
   name: netflix-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/acme-challenge: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - netflix.kerocam.com
+        - meteo.kerocam.com
+      secretName: netflix-tls
   rules:
     - host: netflix.kerocam.com
       http:
